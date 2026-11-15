@@ -1,0 +1,1781 @@
+
+@charset "UTF-8";
+
+/* =========================================
+   SDI - SKILLING DEVELOPMENT INITIATIVE
+   COMPLETE WEBSITE STYLESHEET
+========================================= */
+
+
+/* =========================================
+   1. ROOT VARIABLES
+========================================= */
+
+:root {
+    --green: #1B4332;
+    --green-2: #245640;
+    --green-3: #dce9e1;
+
+    --gold: #D97706;
+    --gold-soft: #fff0d9;
+
+    --ink: #17231d;
+    --muted: #65736b;
+    --paper: #F9FAFB;
+    --white: #fff;
+    --line: #e5ebe7;
+
+    --shadow: 0 18px 55px rgba(20,49,35,.10);
+
+    --radius: 22px;
+    --max: 1160px;
+}
+
+
+/* =========================================
+   2. GLOBAL STYLES
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 92px;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+
+    font-family: Inter, ui-sans-serif, system-ui,
+        -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+    width: min(var(--max), calc(100% - 40px));
+    margin-inline: auto;
+}
+
+
+/* =========================================
+   3. ACCESSIBILITY
+========================================= */
+
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 8px;
+
+    background: #fff;
+    color: var(--green);
+
+    padding: 12px;
+    z-index: 999;
+}
+
+.skip-link:focus {
+    left: 8px;
+}
+
+
+/* =========================================
+   4. HEADER AND NAVIGATION
+========================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid rgba(27,67,50,.09);
+}
+
+.nav-wrap {
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 22px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    min-width: 190px;
+}
+
+.brand-logo {
+    width: 43px;
+    height: 43px;
+
+    object-fit: contain;
+    border-radius: 12px;
+
+    background: #fff;
+}
+
+.brand-logo + .brand-mark {
+    display: none;
+}
+
+.brand-mark {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 14px;
+    background: var(--green);
+    color: #fff;
+
+    display: grid;
+    place-items: center;
+
+    font-weight: 850;
+    letter-spacing: -1px;
+
+    box-shadow: 0 7px 18px #1b43322b;
+}
+
+.brand-name {
+    font-weight: 850;
+    line-height: 1.05;
+    letter-spacing: -.4px;
+
+    color: var(--green);
+}
+
+.brand-name small {
+    display: block;
+
+    font-size: 10px;
+    letter-spacing: 1.3px;
+
+    color: var(--muted);
+    font-weight: 700;
+
+    margin-top: 5px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: clamp(12px, 2vw, 25px);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    color: #405148;
+}
+
+.nav-links a {
+    padding: 10px 0;
+    position: relative;
+}
+
+.nav-links a:after {
+    content: "";
+
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--gold);
+
+    transition: width .25s ease;
+}
+
+.nav-links a:hover:after,
+.nav-links a[aria-current="page"]:after,
+.nav-links a.active:after {
+    width: 100%;
+}
+
+
+/* Navigation buttons */
+
+.nav-cta,
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 19px;
+
+    border-radius: 999px;
+
+    background: var(--gold);
+    color: #fff;
+
+    font-weight: 800;
+    font-size: 13px;
+
+    border: 1px solid transparent;
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        background .22s ease;
+
+    cursor: pointer;
+}
+
+.nav-cta:hover,
+.btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 24px #d9770633;
+
+    background: #bd6505;
+}
+
+.btn-primary {
+    background: var(--green);
+}
+
+.btn-primary:hover {
+    background: #123426;
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: #ffffff8a;
+    color: #fff;
+}
+
+.btn-outline:hover {
+    background: #ffffff18;
+}
+
+.btn-light {
+    background: #fff;
+    color: var(--green);
+    border-color: var(--line);
+}
+
+.btn-light:hover {
+    background: #f2f6f3;
+}
+
+
+/* Mobile menu button */
+
+.menu-toggle {
+    display: none;
+
+    background: #f1f5f2;
+    border: 0;
+    border-radius: 12px;
+
+    width: 44px;
+    height: 44px;
+
+    color: var(--green);
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   5. HERO SECTION
+========================================= */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+
+    background: var(--green);
+    color: #fff;
+
+    min-height: 620px;
+
+    display: flex;
+    align-items: center;
+}
+
+.hero:before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(10,35,24,.94) 0%,
+            rgba(14,49,33,.82) 48%,
+            rgba(14,49,33,.24) 100%
+        ),
+        url("../images/photograph.jpg") center/cover no-repeat;
+
+    opacity: 1;
+}
+
+.hero:after {
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    border: 1px solid #ffffff1c;
+    border-radius: 50%;
+
+    right: -140px;
+    bottom: -290px;
+
+    box-shadow:
+        0 0 0 45px #ffffff08,
+        0 0 0 90px #ffffff06;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+
+    padding: 100px 0 92px;
+
+    max-width: 740px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #f5c77e;
+
+    font-size: 11px;
+    font-weight: 850;
+
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+}
+
+.eyebrow:before {
+    content: "";
+
+    width: 25px;
+    height: 2px;
+
+    background: var(--gold);
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6.1vw, 76px);
+
+    line-height: 1.02;
+    letter-spacing: -3px;
+
+    margin: 23px 0 22px;
+
+    max-width: 760px;
+}
+
+.hero h1 span {
+    color: #f4bd68;
+}
+
+.hero p {
+    font-size: clamp(16px, 1.7vw, 19px);
+
+    color: #e3eee7;
+
+    max-width: 650px;
+
+    margin: 0 0 32px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.hero-note {
+    margin-top: 42px;
+
+    color: #d6e5dc;
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-note i {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+    background: #f4bd68;
+}
+
+
+/* =========================================
+   6. TRUST STRIP
+========================================= */
+
+.trust-strip {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+}
+
+.trust-inner {
+    display: flex;
+    justify-content: center;
+
+    gap: clamp(15px, 3vw, 42px);
+    flex-wrap: wrap;
+
+    padding: 18px 0;
+
+    color: #53645a;
+
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.trust-inner span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.check {
+    color: var(--gold);
+    font-weight: 900;
+}
+
+
+/* =========================================
+   7. SDI TEAM PHOTO SHOWCASE
+========================================= */
+
+.team-showcase {
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    background: #eef4ef;
+
+    overflow: hidden;
+    line-height: 0;
+}
+
+.team-showcase-image {
+    display: block;
+
+    width: 100%;
+    height: 440px;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform .5s ease;
+}
+
+.team-showcase:hover .team-showcase-image {
+    transform: scale(1.01);
+}
+
+
+/* =========================================
+   8. GENERAL SECTIONS
+========================================= */
+
+.section {
+    padding: 88px 0;
+}
+
+.section-sm {
+    padding: 58px 0;
+}
+
+.section-head {
+    max-width: 690px;
+    margin-bottom: 38px;
+}
+
+.kicker {
+    font-size: 11px;
+
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+
+    color: var(--gold);
+    font-weight: 850;
+}
+
+h2 {
+    font-size: clamp(30px, 4vw, 46px);
+
+    line-height: 1.12;
+    letter-spacing: -1.6px;
+
+    color: var(--green);
+
+    margin: 12px 0 15px;
+}
+
+.section-head p,
+.lead {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0;
+}
+
+
+/* =========================================
+   9. ORGANISATION METRICS
+========================================= */
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 14px;
+    margin-top: -1px;
+}
+
+.metric {
+    background: #fff;
+
+    border: 1px solid var(--line);
+
+    padding: 25px;
+    border-radius: 17px;
+}
+
+.metric strong {
+    display: block;
+
+    font-size: 34px;
+    line-height: 1;
+
+    color: var(--green);
+    letter-spacing: -1.4px;
+}
+
+.metric span {
+    display: block;
+
+    font-weight: 800;
+    font-size: 13px;
+
+    margin-top: 12px;
+}
+
+.metric small {
+    display: block;
+
+    color: var(--muted);
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================
+   10. GRID LAYOUTS
+========================================= */
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+
+/* =========================================
+   11. CARDS
+========================================= */
+
+.card {
+    background: #fff;
+
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    box-shadow: 0 5px 20px #183c2810;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card h3 {
+    font-size: 20px;
+
+    line-height: 1.2;
+
+    color: var(--green);
+
+    margin: 0 0 10px;
+
+    letter-spacing: -.4px;
+}
+
+.card p {
+    font-size: 14px;
+
+    color: var(--muted);
+
+    margin: 0 0 15px;
+}
+
+.card-link {
+    font-size: 13px;
+
+    color: var(--green);
+    font-weight: 850;
+}
+
+.card-link span {
+    color: var(--gold);
+    padding-left: 4px;
+}
+
+.icon-tile {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 15px;
+
+    background: var(--green-3);
+
+    display: grid;
+    place-items: center;
+
+    font-size: 22px;
+
+    margin-bottom: 19px;
+}
+
+
+/* =========================================
+   12. IMAGES AND MEDIA
+========================================= */
+
+.media-frame {
+    position: relative;
+
+    overflow: hidden;
+
+    background: linear-gradient(135deg, #1b4332, #52765f);
+
+    aspect-ratio: 16 / 10;
+}
+
+.media-frame img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .55s ease;
+}
+
+.card:hover .media-frame img {
+    transform: scale(1.045);
+}
+
+.media-fallback {
+    position: absolute;
+    inset: 0;
+
+    align-items: end;
+
+    padding: 18px;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .5px;
+
+    background: linear-gradient(
+        0deg,
+        #10291dcc,
+        transparent 75%
+    );
+}
+
+.media-fallback[hidden] {
+    display: none !important;
+}
+
+.media-fallback:not([hidden]) {
+    display: flex;
+}
+
+
+/* =========================================
+   13. SPLIT SECTIONS
+========================================= */
+
+.split {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 55px;
+
+    align-items: center;
+}
+
+.photo-stack {
+    position: relative;
+    padding: 0 25px 25px 0;
+}
+
+.photo-stack .media-frame {
+    aspect-ratio: 4 / 3;
+
+    border-radius: 25px;
+
+    box-shadow: var(--shadow);
+}
+
+.photo-stack:after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    right: 0;
+    bottom: 0;
+
+    width: 65%;
+    height: 65%;
+
+    border-radius: 25px;
+
+    background: var(--gold-soft);
+}
+
+
+/* =========================================
+   14. CHECK LIST
+========================================= */
+
+.check-list {
+    padding: 0;
+    margin: 25px 0;
+
+    list-style: none;
+
+    display: grid;
+    gap: 13px;
+}
+
+.check-list li {
+    display: flex;
+    gap: 11px;
+
+    color: #43554a;
+    font-size: 14px;
+}
+
+.check-list b {
+    color: var(--green);
+}
+
+
+/* =========================================
+   15. QUOTE PANEL
+========================================= */
+
+.quote-panel {
+    background: var(--green);
+    color: #fff;
+
+    border-radius: 28px;
+
+    padding: 38px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-panel:after {
+    content: "“";
+
+    position: absolute;
+
+    right: 24px;
+    top: -55px;
+
+    font-family: Georgia, serif;
+    font-size: 220px;
+
+    color: #ffffff12;
+}
+
+.quote-panel blockquote {
+    position: relative;
+    z-index: 1;
+
+    font-size: clamp(19px, 2.5vw, 27px);
+
+    line-height: 1.35;
+
+    margin: 0 0 20px;
+
+    letter-spacing: -.5px;
+}
+
+.quote-panel p {
+    position: relative;
+    z-index: 1;
+
+    color: #d4e4da;
+    font-size: 12px;
+
+    margin: 0;
+}
+
+.story-label {
+    display: inline-block;
+
+    background: #ffffff18;
+    color: #f4bd68;
+
+    border-radius: 30px;
+
+    padding: 6px 11px;
+
+    font-size: 10px;
+    font-weight: 850;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   16. CALL TO ACTION
+========================================= */
+
+.cta-band {
+    background: var(--green);
+    color: #fff;
+
+    padding: 58px 0;
+}
+
+.cta-inner {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.cta-inner h2 {
+    color: #fff;
+
+    margin: 0 0 8px;
+
+    font-size: clamp(28px, 3vw, 38px);
+}
+
+.cta-inner p {
+    color: #d5e4db;
+    margin: 0;
+}
+
+
+/* =========================================
+   17. INNER PAGE HERO
+========================================= */
+
+.page-hero {
+    background: var(--green);
+    color: #fff;
+
+    padding: 72px 0 68px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero:after {
+    content: "";
+
+    position: absolute;
+
+    right: -80px;
+    top: -200px;
+
+    width: 420px;
+    height: 420px;
+
+    border: 1px solid #ffffff1a;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 40px #ffffff08,
+        0 0 0 80px #ffffff06;
+}
+
+.page-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.page-hero h1 {
+    font-size: clamp(38px, 5vw, 60px);
+
+    letter-spacing: -2px;
+    line-height: 1.05;
+
+    margin: 12px 0;
+}
+
+.page-hero p {
+    color: #d8e6de;
+
+    max-width: 690px;
+
+    margin: 0;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   18. PROGRAM CARDS
+========================================= */
+
+.program-card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100%;
+}
+
+.program-meta {
+    border-top: 1px solid var(--line);
+
+    margin-top: 17px;
+    padding-top: 15px;
+
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.program-meta strong {
+    color: var(--green);
+}
+
+.program-card .card-body {
+    flex: 1;
+}
+
+
+/* =========================================
+   19. VIDEO SECTION
+========================================= */
+
+.video-wrap {
+    background: #10291d;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+}
+
+.video-wrap video {
+    width: 100%;
+
+    max-height: 540px;
+
+    background: #10291d;
+}
+
+.video-caption {
+    padding: 15px 19px;
+
+    color: #dce9e1;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   20. IMAGE GALLERY
+========================================= */
+
+.gallery {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.gallery-item {
+    border: 0;
+    padding: 0;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    border-radius: 17px;
+    overflow: hidden;
+
+    background: #fff;
+
+    position: relative;
+
+    aspect-ratio: 4 / 3;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item span {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding: 30px 15px 13px;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    background: linear-gradient(
+        transparent,
+        #10291dd9
+    );
+}
+
+
+/* =========================================
+   21. PROFILE CARDS
+========================================= */
+
+.profile-card {
+    padding: 25px;
+}
+
+.profile-avatar {
+    width: 62px;
+    height: 62px;
+
+    border-radius: 20px;
+
+    background: var(--green-3);
+
+    display: grid;
+    place-items: center;
+
+    font-size: 25px;
+
+    margin-bottom: 17px;
+}
+
+.profile-card h3 {
+    margin-bottom: 3px;
+}
+
+.profile-card .role {
+    color: var(--gold);
+
+    font-weight: 800;
+    font-size: 11px;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   22. NOTICE AND PARTNERS
+========================================= */
+
+.notice {
+    border-left: 4px solid var(--gold);
+
+    background: #fff8ed;
+
+    padding: 18px 20px;
+
+    border-radius: 0 14px 14px 0;
+
+    color: #68502e;
+    font-size: 13px;
+}
+
+.partner-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.partner-chip {
+    border: 1px dashed #c8d4cc;
+
+    border-radius: 12px;
+
+    padding: 13px 17px;
+
+    background: #fff;
+
+    color: #66756b;
+
+    font-size: 12px;
+    font-weight: 750;
+}
+
+
+/* =========================================
+   23. CONTACT FORMS
+========================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+.field {
+    display: grid;
+    gap: 7px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: var(--green);
+}
+
+.field input,
+.field textarea,
+.field select {
+    width: 100%;
+
+    border: 1px solid #dbe4de;
+
+    border-radius: 12px;
+
+    background: #fff;
+
+    padding: 13px 14px;
+
+    outline: none;
+
+    color: var(--ink);
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    border-color: var(--green);
+
+    box-shadow: 0 0 0 3px #1b433216;
+}
+
+.field textarea {
+    min-height: 135px;
+    resize: vertical;
+}
+
+
+/* =========================================
+   24. CONTACT INFORMATION
+========================================= */
+
+.contact-card {
+    padding: 25px;
+
+    background: #fff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 19px;
+}
+
+.contact-row {
+    display: flex;
+
+    gap: 13px;
+
+    align-items: flex-start;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.contact-row:last-child {
+    border: 0;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 13px;
+
+    background: var(--green-3);
+
+    display: grid;
+    place-items: center;
+}
+
+.contact-row small {
+    display: block;
+
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.contact-row strong {
+    font-size: 14px;
+    color: var(--green);
+}
+
+
+/* =========================================
+   25. FOOTER
+========================================= */
+
+.site-footer {
+    background: #10291d;
+    color: #e1ebe5;
+
+    padding: 55px 0 24px;
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns: 1.4fr 1fr 1fr;
+
+    gap: 45px;
+
+    padding-bottom: 38px;
+}
+
+.site-footer .brand-name {
+    color: #fff;
+}
+
+.site-footer .brand-name small {
+    color: #b9c9bf;
+}
+
+.site-footer p,
+.site-footer a {
+    font-size: 13px;
+    color: #bdcec3;
+}
+
+.site-footer h4 {
+    font-size: 12px;
+
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+
+    color: #f1bd6b;
+
+    margin: 4px 0 17px;
+}
+
+.footer-links {
+    display: grid;
+    gap: 9px;
+}
+
+.footer-links a:hover {
+    color: #f4bd68;
+}
+
+.footer-bottom {
+    border-top: 1px solid #ffffff20;
+
+    padding-top: 19px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+    flex-wrap: wrap;
+
+    color: #9fb4a6;
+    font-size: 11px;
+}
+
+
+/* =========================================
+   26. WHATSAPP FLOATING BUTTON
+========================================= */
+
+.whatsapp-float {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 40;
+
+    width: 54px;
+    height: 54px;
+
+    border-radius: 50%;
+
+    background: #1c9b5a;
+    color: #fff;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 23px;
+
+    box-shadow: 0 8px 24px #0003;
+
+    transition: transform .2s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.08);
+}
+
+
+/* =========================================
+   27. SCROLL ANIMATIONS
+========================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(22px);
+
+    transition:
+        opacity .65s ease,
+        transform .65s ease;
+}
+
+/* Supports both class names used by JavaScript */
+
+.reveal.is-visible,
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+.delay-1 {
+    transition-delay: .1s;
+}
+
+.delay-2 {
+    transition-delay: .2s;
+}
+
+.delay-3 {
+    transition-delay: .3s;
+}
+
+
+/* =========================================
+   28. IMAGE LIGHTBOX
+========================================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+
+    background: #07150eef;
+
+    z-index: 100;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+}
+
+.lightbox.open {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: min(100%, 1000px);
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+}
+
+.lightbox button {
+    position: absolute;
+
+    top: 18px;
+    right: 22px;
+
+    background: #ffffff20;
+    color: #fff;
+
+    border: 0;
+    border-radius: 50%;
+
+    width: 44px;
+    height: 44px;
+
+    font-size: 24px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   29. TABLET RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 980px) {
+
+    .nav-links {
+        gap: 12px;
+        font-size: 12px;
+    }
+
+    .brand {
+        min-width: auto;
+    }
+
+    .brand-name {
+        font-size: 14px;
+    }
+
+    .nav-cta {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+
+    .split {
+        gap: 35px;
+    }
+}
+
+
+/* =========================================
+   30. MOBILE RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 760px) {
+
+    .container {
+        width: min(var(--max), calc(100% - 32px));
+    }
+
+    .nav-wrap {
+        height: 70px;
+    }
+
+    .menu-toggle {
+        display: grid;
+        place-items: center;
+    }
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top: 70px;
+        left: 0;
+        right: 0;
+
+        background: #fff;
+
+        padding: 14px 22px 22px;
+
+        box-shadow: 0 18px 25px #183c2818;
+
+        align-items: stretch;
+        flex-direction: column;
+
+        gap: 2px;
+    }
+
+    /* Supports both main.js menu class names */
+
+    .nav-links.open,
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 11px 0;
+        font-size: 14px;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+
+    /* Mobile hero */
+
+    .hero {
+        min-height: 590px;
+    }
+
+    .hero:before {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(10,35,24,.94),
+                rgba(14,49,33,.72)
+            ),
+            url("../images/photograph.jpg") center/cover no-repeat;
+    }
+
+    .hero-inner {
+        padding: 82px 0;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+
+    /* Mobile team photograph */
+
+    .team-showcase-image {
+        height: 320px;
+    }
+
+
+    /* Mobile sections */
+
+    .section {
+        padding: 66px 0;
+    }
+
+    .section-sm {
+        padding: 45px 0;
+    }
+
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .metric {
+        padding: 19px;
+    }
+
+    .grid-3 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .split {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+    }
+
+    .footer-grid > div:first-child {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* =========================================
+   31. SMALL MOBILE SCREENS
+========================================= */
+
+@media (max-width: 520px) {
+
+    .grid-3,
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+    }
+
+    .gallery-item {
+        border-radius: 12px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid > div:first-child {
+        grid-column: auto;
+    }
+
+    .trust-inner {
+        justify-content: flex-start;
+        font-size: 11px;
+    }
+
+    .quote-panel {
+        padding: 28px;
+    }
+
+    .team-showcase-image {
+        height: 240px;
+    }
+}
+
+
+/* =========================================
+   32. REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* =========================================
+   END OF SDI STYLESHEET
+========================================= */
